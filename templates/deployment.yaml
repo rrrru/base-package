@@ -19,6 +19,9 @@ spec:
       {{- end }}
       labels:
         {{- include "base-package.selectorLabels" . | nindent 8 }}
+        {{- range $key, $val := .Values.podLabels }}
+        {{ $key }}: "{{ $val }}"
+        {{- end }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
