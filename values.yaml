@@ -39,6 +39,9 @@ service:
   type: ClusterIP
   port: 8080
 
+# additional_service:
+#   port: 8081
+
 ingress:
   enabled: true
   className: ""

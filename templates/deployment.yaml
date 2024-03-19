@@ -45,6 +45,11 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+            {{- if .Values.additional_service.port }}
+            - name: http2
+              containerPort: {{ .Values.additional_service.port }}
+              protocol: TCP
+            {{- end }}
           readinessProbe:
             tcpSocket:
               port: {{ .Values.service.port }}
