@@ -45,7 +45,7 @@ spec:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-            {{- if .Values.additional_service.port }}
+            {{- if and .Values.additional_service.enabled .Values.additional_service.port }}
             - name: http2
               containerPort: {{ .Values.additional_service.port }}
               protocol: TCP
