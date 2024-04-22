@@ -39,6 +39,15 @@ service:
   type: ClusterIP
   port: 8080
 
+readinessProbe_enabled: true
+readinessProbe:
+  tcpSocket:
+    port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 10
+
+readinesslivenessProbe: false
+
 additional_service:
   enabled: false
   port: 8081
