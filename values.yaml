@@ -8,6 +8,7 @@ image:
 imagePullSecrets: {}
 
 # envFrom: envfile.env
+env: {}
 
 nameOverride: ""
 fullnameOverride: ""

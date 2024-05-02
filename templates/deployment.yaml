@@ -37,6 +37,10 @@ spec:
             - configMapRef:
                 name: {{ .Release.Name }}-env-configmap
           {{- end }}
+          env:
+          {{- if .Values.env }}
+          {{- tpl (toYaml .Values.env) . | nindent 10 }}
+          {{- end }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
