@@ -54,11 +54,17 @@ spec:
               containerPort: {{ .Values.additional_service.port }}
               protocol: TCP
             {{- end }}
+          {{- if .Values.startupProbe }}
+          startupProbe: {{- tpl ( .Values.startupProbe | toYaml ) . | nindent 12 }}
+          {{- end }}
+          livenessProbe:
+          {{- if .Values.livenessProbe }}
+          {{- tpl ( .Values.livenessProbe | toYaml ) . | nindent 12 }}
+          {{- end }}
           readinessProbe:
-            tcpSocket:
-              port: {{ .Values.service.port }}
-            initialDelaySeconds: 60
-            periodSeconds: 10
+          {{- if .Values.readinessProbe }}
+          {{- tpl ( .Values.readinessProbe | toYaml ) . | nindent 12 }}
+          {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
